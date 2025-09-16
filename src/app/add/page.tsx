@@ -102,12 +102,12 @@ export default function DocumentationManager() {
 </div>
 
        
-        <div >
-          <PlaceholdersAndVanishInput
+<div >
+  <PlaceholdersAndVanishInput
   placeholders={["Enter your document title", "What's this doc about?", "Give it a name!"]}
   onChange={(e) => setTitle(e.target.value)}
   value={" "}
-  name="title"
+ 
 />
  <textarea
   placeholder="Content"
