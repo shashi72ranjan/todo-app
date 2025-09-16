@@ -102,25 +102,27 @@ export default function DocumentationManager() {
 </div>
 
        
-<div >
+<div>
   <PlaceholdersAndVanishInput
-  placeholders={["Enter your document title", "What's this doc about?", "Give it a name!"]}
-  onChange={(e) => setTitle(e.target.value)}
-  value={" "}
- 
-/>
- <textarea
-  placeholder="Content"
-  value={content}
-  onChange={(e) => setContent(e.target.value)}
-  className="w-full h-32 px-4 py-3 rounded-md border border-neutral-300 bg-black/60 text-white font-mono placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-md resize-none mb-5"
-/>
+    placeholders={["Enter your document title", "What's this doc about?", "Give it a name!"]}
+    onChange={(e) => setTitle(e.target.value)}
+    onSubmit={(e) => {
+      e.preventDefault();
+      handleAddOrUpdate();
+    }}
+  />
 
-         <Button onClick={handleAddOrUpdate}>
-  {editingId !== null ? "Update Documentation" : "Add Documentation"}
-</Button>
+  <textarea
+    placeholder="Content"
+    value={content}
+    onChange={(e) => setContent(e.target.value)}
+    className="w-full h-32 px-4 py-3 rounded-md border border-neutral-300 bg-black/60 text-white font-mono placeholder:text-neutral-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-md resize-none mb-5"
+  />
 
-        </div>
+  <Button onClick={handleAddOrUpdate}>
+    {editingId !== null ? "Update Documentation" : "Add Documentation"}
+  </Button>
+</div>
 
         {/* Documentation Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

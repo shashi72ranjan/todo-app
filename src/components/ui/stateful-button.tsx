@@ -1,9 +1,10 @@
 "use client";
 import { cn } from "@/lib/utils";
 import React from "react";
-import { motion, AnimatePresence, useAnimate } from "motion/react";
+import { motion, useAnimate, HTMLMotionProps } from "motion/react";
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+// Create a custom interface that extends HTMLMotionProps but excludes the problematic event handlers
+interface ButtonProps extends Omit<HTMLMotionProps<"button">, "onDrag" | "onDragStart" | "onDragEnd" | "onAnimationStart" | "onAnimationEnd"> {
   className?: string;
   children: React.ReactNode;
 }
@@ -69,15 +70,8 @@ export const Button = ({ className, children, ...props }: ButtonProps) => {
     await animateSuccess();
   };
 
-  const {
-    onClick,
-    onDrag,
-    onDragStart,
-    onDragEnd,
-    onAnimationStart,
-    onAnimationEnd,
-    ...buttonProps
-  } = props;
+  // Only extract the onClick prop, ignore all others
+  const {  ...buttonProps } = props;
 
   return (
     <motion.button

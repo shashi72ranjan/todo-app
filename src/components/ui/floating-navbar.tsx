@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState,ReactNode } from "react";
 import {
   motion,
   AnimatePresence,
@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 interface NavItem {
   name: string;
   link: string;
-  icon?: JSX.Element;
+  icon?: ReactNode;
 }
 
 interface FloatingNavProps {
